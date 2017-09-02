@@ -97,6 +97,20 @@ Labeled['multi_class'] = pd.qcut(TotalReturn,11,labels=range(11))
 
 Eğer tahminde mükemmel bir sistem yapabilsek elde edilebilecek maksimum getiri Şekil 3’teki grafikte gösterilmiştir. Getiri potansiyelini ortaya koyabilmek için böyle bir gösterime gidilmiştir.
 
+![sekil 3](https://user-images.githubusercontent.com/29254495/29993901-110e05aa-8fcc-11e7-9641-a10b03c6f396.PNG)
+
+
+### 2)	Lojistik Regresyona Göre Sistemin Eğitilmesiı: 
+
+Lojistik Regresyon için Phyton kütüphanelerinden sklearn kütüphanesi kullanılmıştır. Model olarak da LogisticRegression(C=1e5) modeli kullanılmıştır.
+
+from sklearn import linear_model
+logreg = linear_model.LogisticRegression(C=1e5)
+
+Sistemin eğitilmesi için 3900 kayıttan 3300 ü kullanılmıştır. 600 kayıt da test için kullanılmıştır. Sistemin eğitilmesi
+res = logreg.fit(X,Y)
+
+komutu ile gerçekleştirilmiştir. X parametresi olarak Giriş verilerini Y parametresi olarak da sınıflandırılmış getiri seçilmiştir. Buna göre test işleminde günlük getirinin hangi sınıfa ait olduğu tespit edilmeye çalışılmıştır. İşlem sonucu elde edilen getiri Şekil 4’te gösterilmiştir.
 
 
 ![test](https://user-images.githubusercontent.com/29254495/29874405-5859908e-8d9f-11e7-8ce7-f797fb2b44dd.PNG)
