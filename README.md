@@ -48,6 +48,10 @@ Res['vol'] = zscore(D.v)
 ```
 
   Veri setinde bulunan tüm hisse senetlerine üsteki yöntem uygulandığında Finansal Piyasa Vektörünü elde edilmektedir. Bu çalışmadaki Finansal Piyasa Vektörü 3900 satır ve 2328 sütundan oluşmaktadır [3900 x 2328]. Bunlardan 3300 ü eğitim 600 ü ise test için kullanılmıştır. Tablo 3’te veri setini oluşturan tüm endeks hisselerine işlem uygulandıktan sonra oluşan Finansal Piyasa Vektörünün yapısı gösterilmiştir.
+  
+
+![tablo 3](https://user-images.githubusercontent.com/29254495/29994638-025076b8-8fdd-11e7-9325-e79dea2b1e54.PNG)
+  
 
   Oluşturulan Finansal Piyasa Vektör matrisi; Giriş Verisi ve Hedeflenen Veri olarak ikiye ayrılmıştır. Giriş Verisi sistemi eğitmek için kullanılmıştır. Hedeflenen Veri de çıktı olarak tahmin edilmesi istenen verilerden oluşmaktadır.
 
@@ -60,7 +64,11 @@ Hedeflenen Veri olarak günlük getirinin tutulduğu “c1_c0” dan oluşmaktad
 
 Sistemi eğitmek için girdi olarak kullanılan finansal piyasa vektör matrisi Tablo 4’te gösterilmiştir.
 
+![tablo 4](https://user-images.githubusercontent.com/29254495/29994637-024ed88a-8fdd-11e7-9d5f-44172373ce2e.PNG)
+
 Sistem çıktısı olarak tahmin edilmeye çalışılan finansal piyasa vektörü Tablo 5’te gösterilmiştir.
+
+![tablo 5](https://user-images.githubusercontent.com/29254495/29994636-0248dbce-8fdd-11e7-80c2-11a0743ea1c4.PNG)
 
 Sistem çıktısı olarak tahmin edilmeye çalışılan finansal piyasa vektörü oluşturulduktan sonra her günlük toplam getiri hesaplanmıştır. Hesaplanan günlük toplam getiri de üç farklı sınıfa yerleştirilmiştir. Toplam getirinin hesaplanması ve sınıflandırılmasında kullanılan Python kodu alta eklenmiştir.
 
