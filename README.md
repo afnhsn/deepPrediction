@@ -103,13 +103,14 @@ Eğer tahminde mükemmel bir sistem yapabilsek elde edilebilecek maksimum getiri
 ### 2)	Lojistik Regresyona Göre Sistemin Eğitilmesiı: 
 
 Lojistik Regresyon için Phyton kütüphanelerinden sklearn kütüphanesi kullanılmıştır. Model olarak da LogisticRegression(C=1e5) modeli kullanılmıştır.
-
+```
 from sklearn import linear_model
 logreg = linear_model.LogisticRegression(C=1e5)
-
+```
 Sistemin eğitilmesi için 3900 kayıttan 3300 ü kullanılmıştır. 600 kayıt da test için kullanılmıştır. Sistemin eğitilmesi
+```
 res = logreg.fit(X,Y)
-
+```
 komutu ile gerçekleştirilmiştir. X parametresi olarak Giriş verilerini Y parametresi olarak da sınıflandırılmış getiri seçilmiştir. Buna göre test işleminde günlük getirinin hangi sınıfa ait olduğu tespit edilmeye çalışılmıştır. İşlem sonucu elde edilen getiri Şekil 4’te gösterilmiştir.
 
 ![sekil 4](https://user-images.githubusercontent.com/29254495/29993927-ba6ebaf4-8fcc-11e7-87be-8da025d801f0.PNG)
@@ -124,13 +125,13 @@ komutu ile gerçekleştirilmiştir. X parametresi olarak Giriş verilerini Y par
 ### 3)	Yapay Sinir Ağlara (NN - Neural Network) Göre Sistemin Eğitilmesi
 
 Yapay Sinir Ağlara Göre Sistemin Eğitilmesi için TensorFlow Kütüphanesi kullanılmıştır. Yapay Sinir Ağ iki katmandan oluşmuştur. Sinir ağın ilk katman boyutu 1000 ikinci katman boyutu 250, dropout 0.2, batch boyutu 50 olarak tanımlanmıştır.
-
+```
 import tensorflow as tf
 from  tensorflow.contrib.learn.python.learn.estimators.dnn  import DNNClassifier
 from tensorflow.contrib.layers import real_valued_column
-
+```
 Sistemin eğitilmesi için 3900 kayıttan 3300 ü kullanılmıştır. 600 kayıt da test için kullanılmıştır. Sistemin eğitilmesi 
-
+```
 train = (InputDF[:-test_size].values,Labeled.tf_class[:-test_size].values)
 
 val = (InputDF[-test_size:].values,Labeled.tf_class[-test_size:].values)
@@ -139,7 +140,7 @@ NUM_TRAIN_BATCHES = int(len(train[0])/BATCH_SIZE) -- 3300/50 = 66
 NUM_VAL_BATCHES = int(len(val[1])/BATCH_SIZE) -- 600/50 = 12
 
 self.logits = tf.contrib.layers.fully_connected
-
+```
 komutu ile gerçekleştirilmiştir. TRAIN parametresi olarak giriş verilerini VAL parametresi olarak da sınıflandırılmış getiri seçilmiştir. Buna göre test işleminde günlük getirinin hangi sınıfa ait olduğu tespit edilmeye çalışılmıştır.
 
 İşlem sonucu elde edilen çıkıtı Şekil 5’teki grafikte gösterilmiştir.
@@ -162,7 +163,7 @@ def makeGRUCells():
             layered_cell = tf.contrib.rnn.MultiRNNCell([base_cell] * NUM_LAYERS,state_is_tuple=False) 
             attn_cell =tf.contrib.rnn.AttentionCellWrapper(cell=layered_cell,attn_length=ATTN_LENGTH,state_is_tuple=False)
             return attn_cell
-        
+                
         self.gru_cell = makeGRUCells()
 
 
