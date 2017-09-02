@@ -18,20 +18,21 @@ Veri seti olarak S&P 500 hisse senetlerinin 18.11.1999 ile 09.08.2013 tarihleri 
 
 Finansal Piyasa Tahmin Vektörünün oluşturulması için her hisse senedinin Açılış, En Yüksek, En Düşük, Kapanış fiyatları arasındaki ilişkinin ortaya koyulabilmesi için işleme tabi tutulup farklı değerler elde edilmiştir. Uygulanan işlem adımları şu şekilde tanımlanabilmektedir: Arasındaki ilişkinin belirlenmesini istenen sütuna ilk önce log getiri (log return) uygulanır, elde edilen sonuca da Z-Puanı (z score) uygulanır. Elde edilen bu yeni değerler de yeni vektöre eklenir. Matematiksel olarak yapılan işlemi gösterebilmek için örnek olarak Kapanış ve Açılış fiyatlarına uygulanan işlem altta gösterilmiştir. 
 
+```
+c_2_o: (kapanış fiyatı ile açılış fiyat arasındaki ilişki);
 
+logGetiri = log(Kapanış Fiyat / Açılış Fiyat); 
 
-Tarih	Açılış	En Yüksek	En Düşük	Kapanış	Volüm
-20130802	46.06	46.51	46.00	46.36	2.1834E+06
-20130805	46.26	46.40	45.80	45.87	1.7933E+06
-20130806	45.93	46.21	45.61	46.05	2.0693E+06
-20130807	45.88	46.46	45.62	46.30	1.4912E+06
-20130808	46.49	46.55	45.64	45.86	1.5091E+06
-20130809	45.85	46.46	45.81	46.24	1.7409E+06
+zPuan = (logGetiri – Ortalama)/StandartSapma;
+
+c_2_o = zPuan;
+```
 
 Fiyatlara uygulanan işlemlerin Python dilinde kodlaması altta gösterilmiştir. Aynı şekilde bir tek hisseye uygulandığında oluşan veri yapısı Tablo 2’de listelenmiştir. 
 
 ![tablo 2](https://user-images.githubusercontent.com/29254495/29993801-06503da6-8fca-11e7-9c6a-d807594f3394.PNG)
 
+```
 ret = lambda x,y: log(y/x) #Log getiri 
 zscore = lambda x:(x -x.mean())/x.std() # zpuan
 
@@ -44,7 +45,7 @@ Res['h_2_l'] = zscore(ret(D.h,D.l))
 Res['c1_c0'] = ret(D.c,D.c.shift(-1)).fillna(0) #Bir sonraki günün getirisi 
 
 Res['vol'] = zscore(D.v)
-
+```
 
   Veri setinde bulunan tüm hisse senetlerine üsteki yöntem uygulandığında Finansal Piyasa Vektörünü elde edilmektedir. Bu çalışmadaki Finansal Piyasa Vektörü 3900 satır ve 2328 sütundan oluşmaktadır [3900 x 2328]. Bunlardan 3300 ü eğitim 600 ü ise test için kullanılmıştır. Tablo 3’te veri setini oluşturan tüm endeks hisselerine işlem uygulandıktan sonra oluşan Finansal Piyasa Vektörünün yapısı gösterilmiştir.
 
@@ -63,6 +64,7 @@ Sistem çıktısı olarak tahmin edilmeye çalışılan finansal piyasa vektör�
 
 Sistem çıktısı olarak tahmin edilmeye çalışılan finansal piyasa vektörü oluşturulduktan sonra her günlük toplam getiri hesaplanmıştır. Hesaplanan günlük toplam getiri de üç farklı sınıfa yerleştirilmiştir. Toplam getirinin hesaplanması ve sınıflandırılmasında kullanılan Python kodu alta eklenmiştir.
 
+```
 #Sınıflandırma kodu, 
 (1 -> Alış) (-1 -> Satış) (0 -> İşlem yok)
 
@@ -86,12 +88,15 @@ Labeled['class'] = TotalReturn.apply(labeler,1)
 
 # Getirilerin 11 sınıfa ayrılması
 Labeled['multi_class'] = pd.qcut(TotalReturn,11,labels=range(11))
+```
 
 İlk sınıflandırmada getiriler 3 sınıfa yerleştirilmiştir. % 0,4 ten fazla getiri olan günler +1 % -0,4 ten fazla zarar eden günler -1, bunların dışında kalan günler de getiri olmadığını kabul edip 0 ile sınıflandırılmıştır.
 
+```
 1    1582
 0    1259
 -1    1059
+```
 
 İkinci sınıflandırmada ise getiriler 11 sınıfa ayrılmıştır. Bu 11 sınıftan 5 i pozitif getiri, 5 i negatif getiri, 1 i de getiri olmayan günleri ifade etmek için kullanılmıştır.
 
@@ -117,10 +122,11 @@ komutu ile gerçekleştirilmiştir. X parametresi olarak Giriş verilerini Y par
 
 Şekil 4’te x ekseni işlem tarihini y ekseni de getiriyi ifade etmektedir. Grafikte kümülatif getiri gösterilmiştir. Görüldüğü üzere Lojistik Regresyon a göre yapılan tahmin pek de başarılı olduğu söyleyemeyiz. Sonlara doğru performansı düzlese de Toplam Endeks getirisiyle neredeyse aynı getiriyi vermektedir. Lojistik Regresyonun 3 sınıfa göre gruplanmış confusion matrix i altta gösterilmiştir.
 
+```
 [[90 36 77]
 [73 35 92]
 [91 30 76]]
-
+```
 
 ### 3)	Yapay Sinir Ağlara (NN - Neural Network) Göre Sistemin Eğitilmesi
 
@@ -150,9 +156,11 @@ komutu ile gerçekleştirilmiştir. TRAIN parametresi olarak giriş verilerini V
 
 Şekil 5’te x ekseni işlem tarihini y ekseni de getiriyi ifade etmektedir. Grafikte kümülatif getiri gösterilmiştir. Görüldüğü üzere Yapay Sinir Ağlarına göre yapılan tahmin modeli hem Lojistik Regresyon a göre hem de Toplam Endeks getirisine göre çok daha iyi sonuç vermiştir. Yapay sinir ağların çıktısı 3 sınıfa göre gruplanmış confusion matrix i altta gösterilmiştir.
 
+```
 [[87 35 81]
  [60 46 94]
  [82 26 89]]
+```
 
 ### 4)	Tekrarlayan Sinir Ağlara (RNN - Recurrent Neural Network) Göre Sistemin Eğitilmesi: 
 
@@ -173,10 +181,11 @@ komutu ile gerçekleştirilmiştir. İşlem sonucu elde edilen çıkıtı alttak
 
 Şekil 6’da x ekseni işlem tarihini y ekseni de getiriyi ifade etmektedir. Grafikte kümülatif getiri gösterilmiştir. Görüldüğü üzere Tekrarlayan Sinir Ağlara göre yapılan tahmin hem Yapay Sinir Ağlarına göre hem Lojistik Regresyon a göre hem de Toplam Endeks getirisine göre çok daha iyi sonuç vermiştir. Tekrarlayan sinir ağların çıktısı 3 sınıfa göre gruplanmış confusion matrix i altta gösterilmiştir.
 
+```
 [[101  33  69]
  [ 82  34  84]
  [ 85  32  80]]
-
+```
 
 Şekil 5 ve Şekil 6'da görüldüğü üzere yöntemler arasındaki fark gün geçtikçe artmaktadır, bunun nedeni yapa sinir ağlarının doğru tahmin başarısı sürdüğünden kümülatif getirinin artmasına neden olmaktadır.
 
