@@ -15,6 +15,8 @@ Veri seti olarak S&P 500 hisse senetlerinin 18.11.1999 ile 09.08.2013 tarihleri 
 
 Finansal Piyasa Tahmin Vektörünün oluşturulması için her hisse senedinin Açılış, En Yüksek, En Düşük, Kapanış fiyatları arasındaki ilişkinin ortaya koyulabilmesi için işleme tabi tutulup farklı değerler elde edilmiştir. Uygulanan işlem adımları şu şekilde tanımlanabilmektedir: Arasındaki ilişkinin belirlenmesini istenen sütuna ilk önce log getiri (log return) uygulanır, elde edilen sonuca da Z-Puanı (z score) uygulanır. Elde edilen bu yeni değerler de yeni vektöre eklenir. Matematiksel olarak yapılan işlemi gösterebilmek için örnek olarak Kapanış ve Açılış fiyatlarına uygulanan işlem altta gösterilmiştir. 
 
+![tablo 1](https://user-images.githubusercontent.com/29254495/29993032-0a803e60-8fb3-11e7-90c1-24d1e5b02d1c.PNG)
+
 
 Tarih	Açılış	En Yüksek	En Düşük	Kapanış	Volüm
 20130802	46.06	46.51	46.00	46.36	2.1834E+06
