@@ -210,11 +210,11 @@ Aynı şekilde, derin öğrenme modelleri, tahminin her şeyden önemli olduğun
 # GELECEK ÇALIŞMALAR
 
 Borsa İstanbul verilerini kullanıp derin öğrenme yöntemlerinden DNN ve LSTM i uygulayarak yapılabilecek çalışmaları şu şekilde listeleyebiliriz:
-•	BIST 100 deki her hisse senedinin bir sonraki fiyatını tahmin etmek.
-•	Borsa İstanbul’daki XU100 ve XU30 endekslerini, endeksleri oluşturan hisseleri kullanarak n dakika sonraki fiyatını tahmin etmek.
-•	Hangi hissenin %x den fazla yukarı ya da aşağı yönlü hareket yapacağını tahmin etmek.
-•	Bir sonraki n dakika içinde hangi hisselerin % x'den fazla yükselteceğini tahmin etmek.
-•	Bir sonraki n dakika içinde hangi hisselerin % 2x'den fazla yükselteceğini / azalacağını ve bu süre içinde % x'den fazla azalmayacağını / yükselmeyeceğini tahmin etmek.
-•	Hangi n dakika içinde XU100 endeksi % 2x'den fazla yükselteceğini / azalacağını ve bu süre içinde % x'den fazla azalmayacağını / yükselmeyeceğini tahmin etmek.
+- BIST 100 deki her hisse senedinin bir sonraki fiyatını tahmin etmek.
+- Borsa İstanbul’daki XU100 ve XU30 endekslerini, endeksleri oluşturan hisseleri kullanarak n dakika sonraki fiyatını tahmin etmek.
+- Hangi hissenin %x den fazla yukarı ya da aşağı yönlü hareket yapacağını tahmin etmek.
+- Bir sonraki n dakika içinde hangi hisselerin % x'den fazla yükselteceğini tahmin etmek.
+- Bir sonraki n dakika içinde hangi hisselerin % 2x'den fazla yükselteceğini / azalacağını ve bu süre içinde % x'den fazla azalmayacağını / yükselmeyeceğini tahmin etmek.
+- Hangi n dakika içinde XU100 endeksi % 2x'den fazla yükselteceğini / azalacağını ve bu süre içinde % x'den fazla azalmayacağını / yükselmeyeceğini tahmin etmek.
 
 
